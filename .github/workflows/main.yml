@@ -1,13 +1,13 @@
 name: Run Python Script
 
-on: [push] # Triggers the workflow on every push to the repo
+on:
+  push: # Triggers on every push
   schedule:
-    # This runs every day at 00:00 UTC
-    - cron: '42 20 * * *'
+    - cron: '42 20 * * *' # Runs daily at 20:42 UTC
 
 jobs:
   build:
-    runs-on: ubuntu-latest # The environment to run on
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
@@ -16,7 +16,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12' # Specify your preferred version
+          python-version: '3.12'
 
       - name: Install dependencies
         run: |
