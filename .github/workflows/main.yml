@@ -1,7 +1,6 @@
 name: Run Python Script
 
 on: [push] # Triggers the workflow on every push to the repo
-
   schedule:
     # This runs every day at 00:00 UTC
     - cron: '42 20 * * *'
