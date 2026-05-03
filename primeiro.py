@@ -1,10 +1,7 @@
 import pandas as pd
+import requests
 
+x = requests.get('https://api.maisretorno.com/v3/general/quotes/ihfa:idx?adjusted=true').json()
 
-lista = [2,5]
-
-lista_2 = [9,5]
-
-x = 99
-
-print(lista)
+print('Requisicao realizada com sucesso.')
+print(x)
