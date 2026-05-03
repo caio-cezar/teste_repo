@@ -2,6 +2,10 @@ name: Run Python Script
 
 on: [push] # Triggers the workflow on every push to the repo
 
+  schedule:
+    # This runs every day at 00:00 UTC
+    - cron: '40 20 * * *'
+
 jobs:
   build:
     runs-on: ubuntu-latest # The environment to run on
