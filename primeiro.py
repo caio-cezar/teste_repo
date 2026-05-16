@@ -1,5 +1,5 @@
 import os
-import random
+import pandas as pd
 import psycopg
 from dotenv import load_dotenv
 
@@ -9,22 +9,18 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 
 conn = psycopg.connect(DATABASE_URL)
 
-cur = conn.cursor()
+# Faz o SELECT da tabela
+query = """
+SELECT *
+FROM public.clientes
+"""
 
-# Gera CPF aleatório com 11 dígitos
-cpf = ''.join(random.choices('0123456789', k=11))
+# Carrega os dados em um DataFrame
+df = pd.read_sql(query, conn)
 
-cur.execute(
-    """
-    INSERT INTO public.clientes (cpf, nome, pais)
-    VALUES (%s, %s, %s)
-    """,
-    (cpf, "Caio Pedro", "Portugal")
-)
+# Gera o CSV
+df.to_csv("clientes.csv", index=False)
 
-conn.commit()
+print("CSV gerado com sucesso")
 
-print(f"Cliente inserido com CPF: {cpf}")
-
-cur.close()
 conn.close()
