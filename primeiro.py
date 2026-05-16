@@ -1,13 +1,3 @@
 import os
-import psycopg
-from dotenv import load_dotenv
 
-load_dotenv()
-
-DATABASE_URL = os.getenv("DATABASE_URL")
-
-print("DATABASE_URL =", DATABASE_URL)
-
-conn = psycopg.connect(DATABASE_URL)
-
-print("Conectado")
+print(os.getenv("DATABASE_URL"))
